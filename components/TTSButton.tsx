@@ -1,15 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 interface TTSButtonProps {
   word: string;
   lang?: string;
 }
 
+// Voice priority list — system-specific, most natural first
+const PREFERRED_VOICES = [
+  "Google US English",
+  "Samantha",
+  "Microsoft Zira - English (United States)",
+  "Microsoft Jenny - English (United States)",
+  "Microsoft Ava - English (United States)",
+  "en-US",
+];
+
 export default function TTSButton({ word, lang = "en-US" }: TTSButtonProps) {
   const [playing, setPlaying] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const getBestVoice = useCallback(
+    (): SpeechSynthesisVoice | null => {
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices.length) return null;
+
+      // Try preferred voices first
+      for (const preferred of PREFERRED_VOICES) {
+        const found = voices.find(
+          (v) =>
+            v.name === preferred || v.voiceURI === preferred
+        );
+        if (found) return found;
+      }
+
+      // Fallback: any English US voice
+      const usVoice = voices.find(
+        (v) => v.lang.startsWith("en-US") && v.localService === false
+      );
+      if (usVoice) return usVoice;
+
+      // Last resort: any English voice
+      return voices.find((v) => v.lang.startsWith("en")) || null;
+    },
+    []
+  );
 
   const speak = () => {
     if (!window.speechSynthesis) {
@@ -25,15 +61,14 @@ export default function TTSButton({ word, lang = "en-US" }: TTSButtonProps) {
 
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = lang;
-    utterance.rate = 0.85;
+    utterance.rate = 0.92; // Slightly slower than normal, but not "drunken"
     utterance.pitch = 1;
+    utterance.volume = 1;
 
-    // Try to find a voice for the target language
-    const voices = window.speechSynthesis.getVoices();
-    const langVoice = voices.find(
-      (v) => v.lang.startsWith("en") && v.lang.includes("US")
-    );
-    if (langVoice) utterance.voice = langVoice;
+    const bestVoice = getBestVoice();
+    if (bestVoice) {
+      utterance.voice = bestVoice;
+    }
 
     utterance.onend = () => setPlaying(false);
     utterance.onerror = () => {
