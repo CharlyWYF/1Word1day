@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [password, setPassword] = useState("");
@@ -27,8 +26,8 @@ export default function LoginForm() {
         return;
       }
 
-      router.push("/admin");
-      router.refresh();
+      // Force full page redirect to ensure cookie is sent
+      window.location.href = "/admin";
     } catch {
       setError("网络错误，请重试");
     } finally {
