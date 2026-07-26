@@ -68,6 +68,7 @@ function HomeContent() {
     const word = words.find((w) => w.id === id);
     if (word) {
       setActiveWord(word);
+      setSidebarOpen(false);
       router.push(`/?id=${id}`, { scroll: false });
     }
   };
@@ -82,13 +83,14 @@ function HomeContent() {
   }
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen">
       <GradientBackground />
 
+      {/* Sidebar - overlay on all screen sizes */}
       <aside
-        className={`${
+        className={`fixed inset-y-0 left-0 z-30 flex flex-col w-64 lg:w-72 border-r border-white/20 p-4 bg-white/80 backdrop-blur-xl transition-transform duration-300 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed inset-y-0 left-0 z-30 flex flex-col w-64 lg:w-72 border-r border-white/20 p-4 bg-white/80 backdrop-blur-xl transition-transform duration-300 ease-in-out md:!translate-x-0`}
+        }`}
       >
         <div className="mb-4 px-4 flex items-center justify-between">
           <div>
@@ -112,14 +114,11 @@ function HomeContent() {
         <WordList
           words={words}
           activeId={activeWord?.id ?? null}
-          onSelect={(id) => {
-            handleSelectWord(id);
-            setSidebarOpen(false);
-          }}
+          onSelect={handleSelectWord}
         />
       </aside>
 
-      {/* Overlay backdrop when sidebar is open on mobile */}
+      {/* Overlay backdrop */}
       {sidebarOpen && (
         <div
           className="fixed inset-0 z-20 bg-black/20"
@@ -127,29 +126,18 @@ function HomeContent() {
         />
       )}
 
-      <main className="flex-1 flex flex-col min-h-screen md:ml-64 lg:ml-72">
-        <div className="flex items-center justify-between p-4 border-b border-white/20">
+      <main className="min-h-screen flex flex-col">
+        <div className="flex items-center gap-2 p-4 border-b border-white/20">
           <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="flex items-center gap-2 glass-button rounded-xl px-3 py-2 text-xs text-gray-500 hover:text-gray-700 transition-all"
-            aria-label="切换侧边栏"
+            onClick={() => setSidebarOpen(true)}
+            className="flex items-center gap-1.5 glass-button rounded-xl px-3 py-2 text-xs text-gray-500 hover:text-gray-700 transition-all"
+            aria-label="打开词汇表"
           >
-            <svg
-              className="w-4 h-4 transition-transform duration-200"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              {sidebarOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              )}
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
-            <span className="hidden sm:inline">词汇表</span>
+            <span>词汇表</span>
           </button>
-          <span className="text-xs text-gray-400">{words.length} 词</span>
         </div>
 
         <WordDisplay word={activeWord} />
