@@ -102,7 +102,7 @@ function HomeContent() {
       {/* Sidebar — desktop: alongside content, collapsible; mobile: fullscreen overlay */}
       <aside
         className={`
-          shrink-0 bg-black/80 backdrop-blur-2xl border-r border-white/10 p-4
+          shrink-0 bg-black/50 backdrop-blur-md border-r border-white/10 p-4
           transition-all duration-300 ease-in-out overflow-hidden
           fixed inset-y-0 left-0 z-30
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
