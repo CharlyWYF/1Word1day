@@ -1,23 +1,15 @@
-import { drizzle } from "drizzle-orm/vercel-postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 import * as schema from "./schema";
-import { sql as vercelSql } from "@vercel/postgres";
 
-// Lazy initialization to handle missing POSTGRES_URL gracefully
-let _db: ReturnType<typeof drizzle> | null = null;
-let _dbError: Error | null = null;
+const connectionString = process.env.POSTGRES_URL || process.env.DATABASE_URL;
 
-export function getDb() {
-  if (_dbError) throw _dbError;
-  if (!_db) {
-    try {
-      _db = drizzle(vercelSql, { schema });
-    } catch (e: any) {
-      _dbError = e;
-      throw e;
-    }
-  }
-  return _db;
+if (!connectionString) {
+  throw new Error(
+    "Missing database connection string. Set POSTGRES_URL or DATABASE_URL."
+  );
 }
 
-// Convenience export — will throw at call site if DB is not configured
-export const db = getDb();
+const client = postgres(connectionString, { ssl: "require", max: 1 });
+
+export const db = drizzle(client, { schema });
