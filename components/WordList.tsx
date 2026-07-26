@@ -1,5 +1,3 @@
-import GlassCard from "./GlassCard";
-
 interface WordItem {
   id: number;
   word: string;
@@ -19,7 +17,7 @@ export default function WordList({
 }: WordListProps) {
   if (!words.length) {
     return (
-      <div className="p-4 text-center text-sm text-gray-400">
+      <div className="p-4 text-center text-sm text-gray-500">
         暂无词汇
       </div>
     );
@@ -33,18 +31,16 @@ export default function WordList({
           onClick={() => onSelect(item.id)}
           className={`w-full text-left px-4 py-3 transition-all rounded-xl mb-1 ${
             activeId === item.id
-              ? "bg-white/30 border border-white/40"
-              : "hover:bg-white/10 border border-transparent"
+              ? "bg-white/15 border border-white/20"
+              : "hover:bg-white/5 border border-transparent"
           }`}
         >
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider">
+          <p className="text-[10px] text-gray-500 uppercase tracking-wider">
             {item.displayDate}
           </p>
           <p
             className={`text-sm font-medium truncate ${
-              activeId === item.id
-                ? "text-gray-800"
-                : "text-gray-600"
+              activeId === item.id ? "text-white" : "text-gray-300"
             }`}
           >
             {item.word}

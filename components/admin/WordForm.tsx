@@ -75,66 +75,61 @@ export default function WordForm({ initialData }: WordFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Word */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-300 mb-2">
             单词 <span className="text-red-400">*</span>
           </label>
           <input
             type="text"
             value={word}
             onChange={(e) => setWord(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-gray-800 placeholder:text-gray-400"
+            className="w-full px-4 py-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 text-white placeholder:text-gray-500"
             placeholder="Serendipity"
             required
           />
         </div>
 
-        {/* Phonetic */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-300 mb-2">
             音标
           </label>
           <input
             type="text"
             value={phonetic}
             onChange={(e) => setPhonetic(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-gray-800 placeholder:text-gray-400"
+            className="w-full px-4 py-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 text-white placeholder:text-gray-500"
             placeholder="/ˌserənˈdɪpəti/"
           />
         </div>
       </div>
 
-      {/* Meaning */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-300 mb-2">
           中文释义 <span className="text-red-400">*</span>
         </label>
         <input
           type="text"
           value={meaning}
           onChange={(e) => setMeaning(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-gray-800 placeholder:text-gray-400"
+          className="w-full px-4 py-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 text-white placeholder:text-gray-500"
           placeholder="意外发现美好事物的运气"
           required
         />
       </div>
 
-      {/* Display Date */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-300 mb-2">
           展示日期 <span className="text-red-400">*</span>
         </label>
         <input
           type="date"
           value={displayDate}
           onChange={(e) => setDisplayDate(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-gray-800"
+          className="w-full px-4 py-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 text-white"
           required
         />
       </div>
 
-      {/* Image Upload */}
       <ImageUploader
         currentImageUrl={imageUrl}
         onUpload={setImageUrl}
@@ -149,7 +144,7 @@ export default function WordForm({ initialData }: WordFormProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="px-6 py-3 rounded-xl glass-button font-medium text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-6 py-3 rounded-xl glass-button font-medium text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {submitting
             ? "保存中..."
@@ -160,7 +155,7 @@ export default function WordForm({ initialData }: WordFormProps) {
         <button
           type="button"
           onClick={() => router.push("/admin")}
-          className="px-6 py-3 rounded-xl bg-white/10 border border-white/20 text-gray-500 hover:bg-white/20 transition-all"
+          className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10 transition-all"
         >
           取消
         </button>

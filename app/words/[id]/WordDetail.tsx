@@ -27,10 +27,10 @@ export default function WordDetail({ word }: { word: WordData }) {
     <div className="min-h-screen flex flex-col">
       <GradientBackground />
 
-      <header className="p-4 border-b border-white/20">
+      <header className="p-4 border-b border-white/10">
         <a
           href="/"
-          className="text-sm text-gray-500 hover:text-gray-700 transition-all"
+          className="text-sm text-gray-400 hover:text-gray-200 transition-all"
         >
           ← 返回首页
         </a>
@@ -40,17 +40,17 @@ export default function WordDetail({ word }: { word: WordData }) {
         <GlassCard strong className="w-full max-w-2xl p-8 md:p-12">
           <p className="text-sm text-gray-500 mb-6">{word.displayDate}</p>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-800 tracking-tight leading-none mb-4 break-words">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-none mb-4 break-words">
             {word.word}
           </h1>
 
           {word.phonetic && (
-            <p className="text-lg md:text-xl text-gray-500 italic mb-4 font-serif">
+            <p className="text-lg md:text-xl text-gray-400 italic mb-4 font-serif">
               {word.phonetic}
             </p>
           )}
 
-          <p className="text-xl md:text-2xl text-gray-600 mb-6">
+          <p className="text-xl md:text-2xl text-gray-300 mb-6">
             {word.meaning}
           </p>
 

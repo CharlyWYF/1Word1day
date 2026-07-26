@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 
 const GRADIENTS = [
-  "from-pink-100 via-purple-100 to-blue-100",
-  "from-amber-100 via-rose-100 to-indigo-100",
-  "from-sky-100 via-indigo-50 to-purple-100",
-  "from-teal-50 via-cyan-50 to-sky-100",
-  "from-rose-50 via-fuchsia-50 to-purple-100",
+  "from-indigo-950 via-purple-950 to-slate-950",
+  "from-slate-950 via-purple-950 to-blue-950",
+  "from-gray-950 via-indigo-950 to-violet-950",
+  "from-blue-950 via-indigo-950 to-slate-950",
+  "from-violet-950 via-fuchsia-950 to-slate-950",
 ];
 
 export default function GradientBackground() {

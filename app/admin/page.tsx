@@ -58,30 +58,30 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen">
       {/* Admin header */}
-      <header className="border-b border-white/20 p-4 flex items-center justify-between">
+      <header className="border-b border-white/10 p-4 flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-semibold text-gray-800">管理后台</h1>
-          <p className="text-xs text-gray-500">
+          <h1 className="text-lg font-semibold text-white">管理后台</h1>
+          <p className="text-xs text-gray-400">
             共 {words.length} 个词汇
           </p>
         </div>
         <div className="flex items-center gap-3">
           <Link
             href="/admin/new"
-            className="px-4 py-2 rounded-xl glass-button text-sm font-medium text-gray-800"
+            className="px-4 py-2 rounded-xl glass-button text-sm font-medium text-white"
           >
             + 添加词汇
           </Link>
           <Link
             href="/"
-            className="px-4 py-2 rounded-xl bg-white/10 border border-white/20 text-sm text-gray-500 hover:bg-white/20 transition-all"
+            className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm text-gray-400 hover:bg-white/10 transition-all"
             target="_blank"
           >
             查看主页
           </Link>
           <button
             onClick={handleLogout}
-            className="px-3 py-2 rounded-xl text-sm text-gray-400 hover:text-gray-600 transition-all"
+            className="px-3 py-2 rounded-xl text-sm text-gray-500 hover:text-gray-300 transition-all"
           >
             退出
           </button>
@@ -93,10 +93,10 @@ export default function AdminPage() {
         {words.length === 0 ? (
           <div className="glass rounded-2xl p-12 text-center">
             <p className="text-4xl mb-4">📖</p>
-            <p className="text-gray-500 mb-4">还没有添加任何词汇</p>
+            <p className="text-gray-400 mb-4">还没有添加任何词汇</p>
             <Link
               href="/admin/new"
-              className="inline-block px-6 py-3 rounded-xl glass-button font-medium text-gray-800"
+              className="inline-block px-6 py-3 rounded-xl glass-button font-medium text-white"
             >
               添加第一个词汇
             </Link>
@@ -110,13 +110,13 @@ export default function AdminPage() {
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-3">
-                    <span className="text-xs text-gray-400 w-24 shrink-0">
+                    <span className="text-xs text-gray-500 w-24 shrink-0">
                       {item.displayDate}
                     </span>
-                    <span className="font-semibold text-gray-800 truncate">
+                    <span className="font-semibold text-white truncate">
                       {item.word}
                     </span>
-                    <span className="text-sm text-gray-500 truncate hidden sm:block">
+                    <span className="text-sm text-gray-400 truncate hidden sm:block">
                       {item.meaning}
                     </span>
                   </div>
@@ -130,7 +130,7 @@ export default function AdminPage() {
                   </Link>
                   <button
                     onClick={() => handleDelete(item.id, item.word)}
-                    className="px-3 py-1 text-xs rounded-xl bg-red-400/20 border border-red-300/30 text-red-600 hover:bg-red-400/30 transition-all"
+                    className="px-3 py-1 text-xs rounded-xl bg-red-400/10 border border-red-400/20 text-red-400 hover:bg-red-400/20 transition-all"
                   >
                     删除
                   </button>

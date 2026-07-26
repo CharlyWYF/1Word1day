@@ -40,21 +40,21 @@ export default function EditWordPage() {
   if (!word) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-gray-500">词汇不存在</div>
+        <div className="text-gray-400">词汇不存在</div>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-white/20 p-4">
+      <header className="border-b border-white/10 p-4">
         <Link
           href="/admin"
-          className="text-sm text-gray-500 hover:text-gray-700 transition-all"
+          className="text-sm text-gray-400 hover:text-gray-200 transition-all"
         >
           ← 返回管理后台
         </Link>
-        <h1 className="text-lg font-semibold text-gray-800 mt-1">
+        <h1 className="text-lg font-semibold text-white mt-1">
           编辑：{word.word}
         </h1>
       </header>

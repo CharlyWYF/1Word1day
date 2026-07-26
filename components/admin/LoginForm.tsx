@@ -39,7 +39,7 @@ export default function LoginForm() {
       <div>
         <label
           htmlFor="password"
-          className="block text-sm font-medium text-gray-700 mb-2"
+          className="block text-sm font-medium text-gray-300 mb-2"
         >
           管理员密码
         </label>
@@ -48,7 +48,7 @@ export default function LoginForm() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-gray-800 placeholder:text-gray-400"
+          className="w-full px-4 py-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 text-white placeholder:text-gray-500"
           placeholder="输入密码"
           autoFocus
         />
@@ -61,7 +61,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={loading || !password}
-        className="w-full py-3 px-6 rounded-xl bg-white/30 backdrop-blur-md border border-white/40 text-gray-800 font-medium hover:bg-white/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full py-3 px-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 text-white font-medium hover:bg-white/15 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {loading ? "登录中..." : "登 录"}
       </button>
