@@ -37,7 +37,7 @@ export default function WordDisplay({ word }: { word: WordData | null }) {
         <p className="text-sm text-gray-500 mb-6">{word.displayDate}</p>
 
         {/* Word */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-none mb-4 break-words">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none mb-4 break-words glass-text">
           {word.word}
         </h1>
 

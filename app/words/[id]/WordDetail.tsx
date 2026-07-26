@@ -40,7 +40,7 @@ export default function WordDetail({ word }: { word: WordData }) {
         <GlassCard strong className="w-full max-w-2xl p-8 md:p-12">
           <p className="text-sm text-gray-500 mb-6">{word.displayDate}</p>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-none mb-4 break-words">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none mb-4 break-words glass-text">
             {word.word}
           </h1>
 
