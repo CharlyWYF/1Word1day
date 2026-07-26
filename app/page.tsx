@@ -102,18 +102,14 @@ function HomeContent() {
       {/* Sidebar — desktop: alongside content, collapsible; mobile: fullscreen overlay */}
       <aside
         className={`
-          transition-all duration-300 ease-in-out shrink-0
-          bg-white/80 backdrop-blur-xl border-r border-white/20 p-4
-
-          /* Mobile: fixed overlay */
-          fixed inset-y-0 left-0 z-30 w-80
+          shrink-0 bg-white/80 backdrop-blur-xl border-r border-white/20 p-4
+          transition-all duration-300 ease-in-out overflow-hidden
+          fixed inset-y-0 left-0 z-30
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-
-          /* Desktop: static column, collapsible width */
           lg:relative lg:inset-auto lg:z-auto lg:bg-transparent lg:backdrop-blur-none
-          lg:${sidebarOpen ? "lg:w-72 lg:opacity-100 lg:visible" : "lg:w-0 lg:opacity-0 lg:invisible lg:overflow-hidden lg:p-0 lg:border-none"}
           lg:translate-x-0
         `}
+        style={{ width: sidebarOpen ? "18rem" : "0" }}
       >
         <div className="mb-4 px-4 flex items-center justify-between">
           <div>
