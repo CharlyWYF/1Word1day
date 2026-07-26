@@ -36,8 +36,12 @@ function HomeContent() {
 
   useEffect(() => {
     fetch("/api/words")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("获取词汇失败");
+        return res.json();
+      })
       .then((data: WordData[]) => {
+        if (!Array.isArray(data)) throw new Error("数据格式错误");
         setWords(data);
 
         const idParam = searchParams.get("id");
@@ -53,7 +57,10 @@ function HomeContent() {
         setActiveWord(findTodayWord(data));
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        console.error("Failed to load words:", err);
+        setLoading(false);
+      });
   }, [searchParams, findTodayWord]);
 
   const handleSelectWord = (id: number) => {
