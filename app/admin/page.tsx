@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface WordItem {
@@ -14,7 +13,7 @@ interface WordItem {
 export default function AdminPage() {
   const [words, setWords] = useState<WordItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
 
   const fetchWords = () => {
     fetch("/api/words")
@@ -45,7 +44,7 @@ export default function AdminPage() {
 
   const handleLogout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
-    router.push("/login");
+    window.location.href = "/login";
   };
 
   if (loading) {

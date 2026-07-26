@@ -1,9 +1,15 @@
-import AdminGuard from "@/components/admin/AdminGuard";
+import { isAuthenticated } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <AdminGuard>{children}</AdminGuard>;
+  const auth = await isAuthenticated();
+  if (!auth) {
+    redirect("/login");
+  }
+
+  return <>{children}</>;
 }
